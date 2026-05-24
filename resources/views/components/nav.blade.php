@@ -16,6 +16,29 @@
           <a class="nav-link text-light" href="/contact">Contact</a>
         </li>
       </ul>
+        @auth
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Logout</button>
+                </form>
+                </li>
+                </ul>
+            </li>
+            </ul>
+            @else
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link text-light" href="/login">Login</a>
+            </li>
+            </ul>
+        @endauth
     </div>
   </div>
 </nav>
